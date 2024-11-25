@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Payment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+        h1 {
+            text-align: center;
+        }
+        .payment-options {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin-bottom: 20px;
+        }
+        .payment-option {
+            background-color: white;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .payment-option:hover {
+            background-color: #f1f1f1;
+        }
+        .payment-option input {
+            margin-right: 10px;
+        }
+        .payment-details {
+            display: none;
+            background-color: white;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-top: 20px;
+        }
+        .payment-details input, .payment-details button {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        #addressForm {
+            background-color: white;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 20px;
+        }
+        #addressForm input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+        }
+        #placeOrderBtn {
+            background-color: #28a745;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            border-radius: 5px;
+            display: none;
+        }
+        #placeOrderBtn:hover {
+            background-color: #218838;
+        }
+    </style>
+</head>
+<body>
+    <h1>Enter Shipping Address</h1>
+    <div id="addressForm">
+        <label for="address">Enter Shipping Address:</label>
+        <input type="text" id="address" placeholder="Street Address, City, Zip Code" required>
+        <label for="phone">Enter Phone Number:</label>
+        <input type="text" id="phone" placeholder="Your Phone Number" required>
+        <button id="nextBtn" onclick="showPaymentOptions()">Next</button>
+    </div>
+
+    <div id="paymentOptionsDiv" style="display: none;">
+        <h1>Select Payment Option</h1>
+        <div class="payment-options">
+            <div class="payment-option">
+                <label>
+                    <input type="radio" name="paymentOption" value="upi" id="upiOption"> UPI
+                </label>
+            </div>
+            <div class="payment-option">
+                <label>
+                    <input type="radio" name="paymentOption" value="card" id="cardOption"> Credit/Debit Card
+                </label>
+            </div>
+            <div class="payment-option">
+                <label>
+                    <input type="radio" name="paymentOption" value="netbanking" id="netbankingOption"> Net Banking
+                </label>
+            </div>
+            <div class="payment-option">
+                <label>
+                    <input type="radio" name="paymentOption" value="cod" id="codOption"> Cash on Delivery
+                </label>
+            </div>
+        </div>
+
+        <div id="paymentDetails" class="payment-details"></div>
+        <button id="placeOrderBtn" onclick="placeOrder()">Pay Now</button>
+    </div>
+
+    <script>
+        // Show the payment options after the user enters their address
+        function showPaymentOptions() {
+            const address = document.getElementById('address').value;
+            const phone = document.getElementById('phone').value;
+
+            if (!address || !phone) {
+                alert("Please fill in both address and phone number.");
+                return;
+            }
+
+            // Store address and phone in localStorage
+            localStorage.setItem('shippingAddress', address);
+            localStorage.setItem('phoneNumber', phone);
+
+            // Hide the address form and show the payment options
+            document.getElementById('addressForm').style.display = 'none';
+            document.getElementById('paymentOptionsDiv').style.display = 'block';
+        }
+
+        // Show payment details when an option is selected
+        const paymentOptions = document.querySelectorAll('input[name="paymentOption"]');
+        const paymentDetailsDiv = document.getElementById('paymentDetails');
+        const placeOrderBtn = document.getElementById('placeOrderBtn');
+
+        paymentOptions.forEach(option => {
+            option.addEventListener('change', function() {
+                showPaymentDetails(option.value);
+            });
+        });
+
+        function showPaymentDetails(paymentOption) {
+            let paymentDetailsContent = '';
+            if (paymentOption === 'upi') {
+                paymentDetailsContent = `
+                    <label for="upiId">Enter UPI ID:</label>
+                    <input type="text" id="upiId" placeholder="e.g., user@upi">
+                    <label for="upiPin">Enter UPI PIN:</label>
+                    <input type="password" id="upiPin" placeholder="UPI PIN">
+                `;
+            } else if (paymentOption === 'card') {
+                paymentDetailsContent = `
+                    <label for="cardNumber">Enter Card Number:</label>
+                    <input type="text" id="cardNumber" placeholder="1234 5678 9012 3456">
+                    <label for="expiryDate">Expiry Date:</label>
+                    <input type="text" id="expiryDate" placeholder="MM/YY">
+                    <label for="cvv">Enter CVV:</label>
+                    <input type="text" id="cvv" placeholder="123">
+                `;
+            } else if (paymentOption === 'netbanking') {
+                paymentDetailsContent = `
+                    <label for="bankName">Select Bank:</label>
+                    <input type="text" id="bankName" placeholder="Enter Bank Name">
+                    <label for="accountNumber">Enter Account Number:</label>
+                    <input type="text" id="accountNumber" placeholder="Enter Account Number">
+                `;
+            } else if (paymentOption === 'cod') {
+                paymentDetailsContent = `
+                    <p>Cash on Delivery selected. No payment details required.</p>
+                `;
+            }
+
+            // Display the payment details form
+            paymentDetailsDiv.innerHTML = paymentDetailsContent;
+            paymentDetailsDiv.style.display = 'block';
+            placeOrderBtn.style.display = 'block';
+        }
+
+        function placeOrder() {
+            // Get selected payment option
+            const paymentOption = document.querySelector('input[name="paymentOption"]:checked');
+
+            // Check if a payment option is selected
+            if (paymentOption) {
+                const cart = JSON.parse(localStorage.getItem('cart')) || [];
+                const totalAmount = parseFloat(localStorage.getItem('totalAmount')) || 0;
+                const address = localStorage.getItem('shippingAddress');
+                const phone = localStorage.getItem('phoneNumber');
+
+                // Save order details in localStorage (simulating order placement)
+                localStorage.setItem('orderDetails', JSON.stringify({
+                    cartItems: cart,
+                    totalAmount: totalAmount,
+                    paymentOption: paymentOption.value,
+                    shippingAddress: address,
+                    phoneNumber: phone
+                }));
+
+                // Show success message
+                alert(`Your order has been successfully placed using ${paymentOption.value.toUpperCase()}!`);
+                // Redirect to order confirmation or thank you page
+                window.location.href = 'last.html';
+            } else {
+                // Alert if no payment option is selected
+                alert("Please select a payment option.");
+            }
+        }
+    </script>
+</body>
+</html>

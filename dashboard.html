@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to SR's Kitchens</title>
+    <style>
+        @font-face {
+            font-family: 'Blackadder ITC';
+            src: local('Blackadder ITC'), fallback: serif; /* Blackadder ITC or fallback */
+        }
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background: url('https://img.staticmb.com/mbcontent/images/crop/uploads/2024/6/vastu-tips-for-restaurant%20(1)_0_1200.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: #fff;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(0px);
+            z-index: -1;
+        }
+        .container {
+            text-align: center;
+        }
+        .container h2 {
+            font-family: 'Blackadder ITC', cursive;
+            font-weight: bold;
+            margin: 0;
+            font-size: 4em;
+        }
+        .container p {
+            margin-top: 10px;
+            font-size: 1.2em;
+        }
+        .button {
+            display: inline-block;
+            padding: 15px 30px;
+            margin-top: 30px;
+            font-size: 18px;
+            color: white;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Welcome to SR's Kitchens</h2>
+        <p>Explore our delicious food items!</p>
+        <a href="items.html" class="button">Order Now</a>
+    </div>
+</body>
+</html>

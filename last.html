@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            background-color: #f0f8ff;
+            overflow: hidden;
+        }
+        .message-container {
+            text-align: center;
+            padding: 20px;
+            background-color: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            max-width: 80%;
+            animation: fadeIn 1.5s ease-in-out;
+        }
+        .success-message {
+            font-size: 2em;
+            font-weight: bold;
+            color: #28a745;
+            animation: slideUp 2s ease-out, fontChange 3s infinite alternate;
+        }
+        @keyframes fadeIn {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        @keyframes slideUp {
+            0% {
+                transform: translateY(30px);
+            }
+            100% {
+                transform: translateY(0);
+            }
+        }
+        @keyframes fontChange {
+            0% {
+                font-family: 'Arial', sans-serif;
+                color: #28a745;
+            }
+            25% {
+                font-family: 'Courier New', monospace;
+                color: #007bff;
+            }
+            50% {
+                font-family: 'Georgia', serif;
+                color: #ff6347;
+            }
+            75% {
+                font-family: 'Lucida Console', monospace;
+                color: #ffc107;
+            }
+            100% {
+                font-family: 'Times New Roman', serif;
+                color: #28a745;
+            }
+        }
+        .order-details {
+            font-size: 1.2em;
+            color: #555;
+            margin-top: 15px;
+            animation: slideUp 1.5s ease-out;
+        }
+        .home-button {
+            margin-top: 20px;
+            padding: 10px 20px;
+            font-size: 1.1em;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+        }
+        .home-button:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <div class="message-container">
+        <div class="success-message">Your Order Has Been Successfully Placed!</div>
+        <div class="order-details" id="orderDetails"></div>
+        <a href="items.html" class="home-button">Go Back to Home</a>
+    </div>
+
+    <script>
+        // Retrieve order details from localStorage
+        const orderDetails = JSON.parse(localStorage.getItem('orderDetails'));
+
+        // Display order details
+        if (orderDetails) {
+            const orderDetailsDiv = document.getElementById('orderDetails');
+            const { cartItems, totalAmount, paymentOption, shippingAddress, phoneNumber } = orderDetails;
+            let itemsList = '<ul>';
+            cartItems.forEach(item => {
+                itemsList += `<li>${item.item} - $${item.price.toFixed(2)}</li>`;
+            });
+            itemsList += '</ul>';
+
+            orderDetailsDiv.innerHTML = `
+                <strong>Order Summary:</strong>
+                ${itemsList}
+                <p>Total Amount: $${totalAmount.toFixed(2)}</p>
+                <p>Payment Method: ${paymentOption.toUpperCase()}</p>
+                <p>Shipping Address: ${shippingAddress}</p>
+                <p>Phone Number: ${phoneNumber}</p>
+            `;
+        } else {
+            alert("No order details found.");
+        }
+    </script>
+</body>
+</html>

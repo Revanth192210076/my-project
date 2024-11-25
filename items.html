@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Food Items</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #fff;
+        }
+        header {
+            background-image: url('https://img.freepik.com/premium-photo/kitchen-restaurant-is-open-kitchen_808092-5188.jpg'); /* Background image for header */
+            background-size: cover;
+            color: white;
+            padding: 60px 0;
+            text-align: center;
+        }
+        header h1 {
+            font-size: 50px;
+            margin: 0;
+        }
+        header p {
+            font-size: 20px;
+            margin: 10px 0;
+        }
+        .container {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            margin: 20px;
+            background-image: url('https://img.freepik.com/premium-photo/chef-cooking-with-fiery-passion-restaurant-kitchen_204719-13056.jpg'); /* Background image for items section */
+            background-size: cover;
+            padding: 20px;
+            border-radius: 15px;
+        }
+        .food-item {
+            width: 200px;
+            margin: 15px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+            overflow: hidden;
+            background-color: #f8f9fa;
+            opacity: 0.9; /* Slight transparency */
+        }
+        .food-item img {
+            width: 100%;
+            height: 150px;
+            object-fit: cover;
+        }
+        .food-item h3 {
+            margin: 10px 0;
+            font-size: 16px;
+        }
+        .food-item p {
+            font-size: 14px;
+            color: #28a745;
+            font-weight: bold;
+        }
+        .food-section {
+            display: none;
+        }
+        button {
+            background-color: #ADD8E6; /* Light Blue */
+            color: white;
+            font-size: 18px;
+            padding: 10px 20px;
+            margin: 10px;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #87CEEB; /* Lighter Blue */
+        }
+        .add-to-cart {
+            background-color: #FFD700; /* Gold */
+            color: white;
+            font-size: 16px;
+            padding: 8px 15px;
+            border: none;
+            margin-top: 10px;
+            cursor: pointer;
+        }
+        .add-to-cart:hover {
+            background-color: #FFA500; /* Darker Gold */
+        }
+        .checkout-link {
+            display: block;
+            text-align: center;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+        .checkout-link a {
+            text-decoration: none;
+            color: #0066cc;
+        }
+        .checkout-link a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Sr's Special Food Items</h1>
+        <p>Delicious and Fresh!</p>
+        <button onclick="showVegItems()">Veg Items</button>
+        <button onclick="showNonVegItems()">Non-Veg Items</button>
+    </header>
+    
+    <!-- Veg Section -->
+    <div id="vegItems" class="food-section">
+        <h2 style="text-align: center;">Veg Items</h2>
+        <div class="container">
+            <div class="food-item">
+                <img src="https://via.placeholder.com/200x150?text=Veg+Pizza" alt="Veg Pizza">
+                <h3>Veg Pizza</h3>
+                <p>$12.99</p>
+                <button class="add-to-cart" onclick="addToCart('Veg Pizza', 12.99)">Add to Cart</button>
+            </div>
+            <div class="food-item">
+                <img src="https://via.placeholder.com/200x150?text=Veg+Burger" alt="Veg Burger">
+                <h3>Veg Burger</h3>
+                <p>$8.99</p>
+                <button class="add-to-cart" onclick="addToCart('Veg Burger', 8.99)">Add to Cart</button>
+            </div>
+            <div class="food-item">
+                <img src="https://via.placeholder.com/200x150?text=Veg+Pasta" alt="Veg Pasta">
+                <h3>Veg Pasta</h3>
+                <p>$10.99</p>
+                <button class="add-to-cart" onclick="addToCart('Veg Pasta', 10.99)">Add to Cart</button>
+            </div>
+            <div class="food-item">
+                <img src="https://via.placeholder.com/200x150?text=Veg+Salad" alt="Veg Salad">
+                <h3>Veg Salad</h3>
+                <p>$6.99</p>
+                <button class="add-to-cart" onclick="addToCart('Veg Salad', 6.99)">Add to Cart</button>
+            </div>
+            <!-- New Veg Items -->
+            <div class="food-item">
+                <img src="https://via.placeholder.com/200x150?text=Veg+Sandwich" alt="Veg Sandwich">
+                <h3>Veg Sandwich</h3>
+                <p>$7.99</p>
+                <button class="add-to-cart" onclick="addToCart('Veg Sandwich', 7.99)">Add to Cart</button>
+            </div>
+            <div class="food-item">
+                <img src="https://via.placeholder.com/200x150?text=Veg+Wrap" alt="Veg Wrap">
+                <h3>Veg Wrap</h3>
+                <p>$9.99</p>
+                <button class="add-to-cart" onclick="addToCart('Veg Wrap', 9.99)">Add to Cart</button>
+            </div>
+            <div class="food-item">
+                <img src="https://via.placeholder.com/200x150?text=Veg+Biryani" alt="Veg Biryani">
+                <h3>Veg Biryani</h3>
+                <p>$13.99</p>
+                <button class="add-to-cart" onclick="addToCart('Veg Biryani', 13.99)">Add to Cart</button>
+            </div>
+            <div class="food-item">
+                <img src="https://via.placeholder.com/200x150?text=Veg+Soup" alt="Veg Soup">
+                <h3>Veg Soup</h3>
+                <p>$5.99</p>
+                <button class="add-to-cart" onclick="addToCart('Veg Soup', 5.99)">Add to Cart</button>
+            </div>
+            <!-- Additional Veg Items -->
+            <div class="food-item">
+                <img src="https://via.placeholder.com/200x150?text=Veg+Noodles" alt="Veg Noodles">
+                <h3>Veg Noodles</h3>
+                <p>$7.99</p>
+                <button class="add-to-cart" onclick="addToCart('Veg Noodles', 7.99)">Add to Cart</button>
+            </div>
+            <div class="food-item">
+                <img src="https://via.placeholder.com/200x150?text=Veg+Fried+Rice" alt="Veg Fried Rice">
+                <h3>Veg Fried Rice</h3>
+                <p>$8.99</p>
+                <button class="add-to-cart" onclick="addToCart('Veg Fried Rice', 8.99)">Add to Cart</button>
+            </div>
+            <div class="food-item">
+                <img src="https://via.placeholder.com/200x150?text=Veg+Kebabs" alt="Veg Kebabs">
+                <h3>Veg Kebabs</h3>
+                <p>$10.49</p>
+                <button class="add-to-cart" onclick="addToCart('Veg Kebabs', 10.49)">Add to Cart</button>
+            </div>
+            <div class="food-item">
+                <img src="https://via.placeholder.com/200x150?text=Veg+Tacos" alt="Veg Tacos">
+                <h3>Veg Tacos</h3>
+                <p>$6.99</p>
+                <button class="add-to-cart" onclick="addToCart('Veg Tacos', 6.99)">Add to Cart</button>
+            </div>
+            <div class="food-item">
+                <img src="https://via.placeholder.com/200x150?text=Veg+Stew" alt="Veg Stew">
+                <h3>Veg Stew</h3>
+                <p>$7.49</p>
+                <button class="add-to-cart" onclick="addToCart('Veg Stew', 7.49)">Add to Cart</button>
+            </div>
+            <!-- New additional Veg items -->
+            <div class="food-item">
+                <img src="https://via.placeholder.com/200x150?text=Veg+Steak" alt="Veg Steak">
+                <h3>Veg Steak</h3>
+                <p>$14.99</p>
+                <button class="add-to-cart" onclick="addToCart('Veg Steak', 14.99)">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Non-Veg Section -->
+    <div id="nonVegItems" class="food-section">
+        <h2 style="text-align: center;">Non-Veg Items</h2>
+        <div class="container">
+            <div class="food-item">
+                <img src="https://via.placeholder.com/200x150?text=Chicken+Pizza" alt="Chicken Pizza">
+                <h3>Chicken Pizza</h3>
+                <p>$15.99</p>
+                <button class="add-to-cart" onclick="addToCart('Chicken Pizza', 15.99)">Add to Cart</button>
+            </div>
+            <div class="food-item">
+                <img src="https://via.placeholder.com/200x150?text=Chicken+Burger" alt="Chicken Burger">
+                <h3>Chicken Burger</h3>
+                <p>$10.99</p>
+                <button class="add-to-cart" onclick="addToCart('Chicken Burger', 10.99)">Add to Cart</button>
+            </div>
+            <div class="food-item">
+                <img src="https://via.placeholder.com/200x150?text=Chicken+Pasta" alt="Chicken Pasta">
+                <h3>Chicken Pasta</h3>
+                <p>$12.99</p>
+                <button class="add-to-cart" onclick="addToCart('Chicken Pasta', 12.99)">Add to Cart</button>
+            </div>
+            <div class="food-item">
+                <img src="https://via.placeholder.com/200x150?text=Chicken+Salad" alt="Chicken Salad">
+                <h3>Chicken Salad</h3>
+                <p>$9.99</p>
+                <button class="add-to-cart" onclick="addToCart('Chicken Salad', 9.99)">Add to Cart</button>
+            </div>
+            <!-- New Non-Veg Items -->
+            <div class="food-item">
+                <img src="https://via.placeholder.com/200x150?text=Chicken+Sandwich" alt="Chicken Sandwich">
+                <h3>Chicken Sandwich</h3>
+                <p>$8.99</p>
+                <button class="add-to-cart" onclick="addToCart('Chicken Sandwich', 8.99)">Add to Cart</button>
+            </div>
+            <div class="food-item">
+                <img src="https://via.placeholder.com/200x150?text=Chicken+Wrap" alt="Chicken Wrap">
+                <h3>Chicken Wrap</h3>
+                <p>$11.99</p>
+                <button class="add-to-cart" onclick="addToCart('Chicken Wrap', 11.99)">Add to Cart</button>
+            </div>
+            <div class="food-item">
+                <img src="https://via.placeholder.com/200x150?text=Chicken+Biryani" alt="Chicken Biryani">
+                <h3>Chicken Biryani</h3>
+                <p>$16.99</p>
+                <button class="add-to-cart" onclick="addToCart('Chicken Biryani', 16.99)">Add to Cart</button>
+            </div>
+            <div class="food-item">
+                <img src="https://via.placeholder.com/200x150?text=Chicken+Soup" alt="Chicken Soup">
+                <h3>Chicken Soup</h3>
+                <p>$7.99</p>
+                <button class="add-to-cart" onclick="addToCart('Chicken Soup', 7.99)">Add to Cart</button>
+            </div>
+            <!-- Additional Non-Veg Items -->
+            <div class="food-item">
+                <img src="https://via.placeholder.com/200x150?text=Chicken+Noodles" alt="Chicken Noodles">
+                <h3>Chicken Noodles</h3>
+                <p>$9.49</p>
+                <button class="add-to-cart" onclick="addToCart('Chicken Noodles', 9.49)">Add to Cart</button>
+            </div>
+            <div class="food-item">
+                <img src="https://via.placeholder.com/200x150?text=Chicken+Fried+Rice" alt="Chicken Fried Rice">
+                <h3>Chicken Fried Rice</h3>
+                <p>$10.99</p>
+                <button class="add-to-cart" onclick="addToCart('Chicken Fried Rice', 10.99)">Add to Cart</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Checkout Link -->
+    <div class="checkout-link">
+        <a href="cart.html">Go to Cart</a>
+    </div>
+
+    <script>
+        // Function to initialize or get existing cart from localStorage
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let totalAmount = parseFloat(localStorage.getItem('totalAmount')) || 0;
+
+        // Function to update the cart display in localStorage
+        function updateLocalStorage() {
+            localStorage.setItem('cart', JSON.stringify(cart));
+            localStorage.setItem('totalAmount', totalAmount.toFixed(2));
+        }
+
+        // Function to add items to the cart
+        function addToCart(item, price) {
+            cart.push({ item: item, price: price });
+            totalAmount += price;
+
+            alert(item + " has been added to your cart!");
+
+            // Update localStorage with new cart data and total amount
+            updateLocalStorage();
+        }
+
+        // Function to show Veg items
+        function showVegItems() {
+            document.getElementById("vegItems").style.display = "block";
+            document.getElementById("nonVegItems").style.display = "none";
+        }
+
+        // Function to show Non-Veg items
+        function showNonVegItems() {
+            document.getElementById("nonVegItems").style.display = "block";
+            document.getElementById("vegItems").style.display = "none";
+        }
+    </script>
+</body>
+</html>
